@@ -2,6 +2,17 @@
     border: 3px solid blue;
 }
 
+.block-container div {
+    border: 3px solid greenyellow;
+    width: 300px;  /* 기본적으로  block 요소에만 width 적용 가능 */
+}
 .inline-container {
     border: 3px solid salmon;
+
+}
+
+.inline-container span {
+    border: 3px solid green;
+    width: 300px;  /* inline 요소에는  box 의 규격을 정해주는  width 또는 height 적용 안됨 */
+    display: block; /* 강제로 display를  block 요소로 바꾸어 주어야 함*/ 
 }
