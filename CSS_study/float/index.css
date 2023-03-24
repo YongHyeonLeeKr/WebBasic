@@ -1,0 +1,15 @@
+.float-box {
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+    color: #fff;
+    padding: 30px;
+    box-sizing: border-box;
+    float: right;
+}
+
+/*float와 clear 사이의 관계 */
+p {
+    font-size: 20px;
+    clear: right;
+}

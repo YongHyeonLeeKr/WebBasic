@@ -1,0 +1,63 @@
+* { /* 기본 html 옵션을 커스터마이징 하기 쉽게 초기화*/
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background-color: gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 50px 0; /* 상하 50px 패딩만 좌우는 0 px */
+}
+
+
+.wrapper {
+    width: 620px;
+    padding: 40px 30px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius:  10px ;
+}
+
+.wrapper__head {
+    border-bottom: 1px dashed; /* 하단 보더에 1px 짜리 대쉬선*/
+}
+
+.wrapper__head__title {
+
+    background-color: orange;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    font-size: x-large;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.wrapper__head__sub-title {
+    font-size: 18px; /*16~18px 의 웁 표준 */
+    padding: 10px 0;
+}
+
+#point {
+    display: block;
+    margin-top: 15px;
+    color: orange;
+    text-decoration: underline;
+}
+
+.wrapper__body {
+
+    margin-top: 10px;
+    border: 1px solid #dddddd;
+    padding: 20px 30px;
+}
+
+.diary-title {
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #f4f4f4;
+    margin-bottom: 20px;
+}
