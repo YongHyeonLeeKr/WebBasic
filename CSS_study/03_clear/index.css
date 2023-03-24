@@ -1,0 +1,29 @@
+.box1 {
+    background-color: red;   
+    height: 500px;
+    float: left;
+}
+
+.box2 {
+    background-color: aqua;
+    height: 300px;
+    float: right;
+
+}
+
+.box3 {
+    clear: both;
+}
+
+
+/* Clearfix 라는 class를 가지는 태그를 관습적으로 clear:both를
+통해 float의 영향을 받지 않도록 한다.*/
+.clearfix{
+    clear: both;
+}
+
+.box {
+    width: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+}

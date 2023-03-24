@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+}
+
+
+.flex-container {
+    height: 300px;
+    background-color: aqua;
+    padding: 10px;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* 
+    flex 정렬 방향 
+    */
+}
+
+.flex-container div {
+    background: white;
+    border: 1px solid red;
+}
