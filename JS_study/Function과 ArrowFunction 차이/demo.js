@@ -1,10 +1,6 @@
 
-# 화살표 함숭와 애로우 펑션
 
-this가 누구의 것이냐? 
 
-예제 
-``` js
 var relationship1 = {
   name: 'zero',
   friends: ['nero', 'hero', 'xero'],
@@ -18,7 +14,6 @@ var relationship1 = {
 relationship1.logFriends();
 
 
-
 const relationship2 = {
   name: 'zero',
   friends: ['nero', 'hero', 'xero'],
@@ -29,6 +24,4 @@ const relationship2 = {
   },
 };
 relationship2.logFriends();
-
-```
 
