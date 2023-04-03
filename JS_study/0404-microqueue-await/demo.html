@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroQueue 와 await의 관계</title>
+    <script>
+        const onClickMicroAwait = () => {
+            console.log('________시작__________')
+
+            function func1() {
+                console.log('func1 시작')
+                func2();
+                console.log('func1 끝')
+            }
+
+            async function func2() {
+                console.log('func2 시작')
+                const friend = await "철수";
+                console.log(friend);
+            }
+
+            func1();
+
+            console.log('________끝__________')
+            
+        }
+    </script>
+</head>
+<body>
+    <button onclick="onClickMicroAwait()">onClickMicroAwait()</button>
+</body>
+</html>
