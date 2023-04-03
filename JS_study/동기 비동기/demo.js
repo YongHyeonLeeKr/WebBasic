@@ -57,6 +57,13 @@ const test_AxiosIsPromise = () => {
         })
 }
 
+const test_AsnycAwait = async () => {
+    
+    const result = await axios.get(`http://numbersapi.com/#random?min=1&max=10`)
+    console.log(result);
+
+}
+
 
 
 

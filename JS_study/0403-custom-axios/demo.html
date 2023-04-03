@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise 를 이용해서 나만의 Axios 만들기</title>
+    <script>   
+        const m_Axios = {
+            get: (url) => { // 리턴으로 프로미스를 던저주자.
+                return new Promise((resolve, reject)=>{
+                    const xmlHttpRequest = new XMLHttpRequest()
+                    xmlHttpRequest.open("get", url)
+                    xmlHttpRequest.send()
+                    xmlHttpRequest.addEventListener("load", (res) => {
+                        resolve(res.target.response)
+                    });
+                });
+            },
+            post: (url) => {
+
+            }
+        }
+
+        const onClick_m_Axios = async () => {
+            console.log("OnClick_m_Axios")
+            //Axios 요청하기
+            // 1. .then 으로 받기 
+            m_Axios.get("https://koreanjson.com/posts/1").then((res) => {
+                console.log(".then으로 받은 것 : ", res)
+            })
+            
+
+            // 2. await 로 응답받기 
+            const result = await m_Axios.get("https://koreanjson.com/posts/1")
+            console.log("await로 받은 것, : ", result)
+
+        }
+    </script>
+</head>
+<body>
+    <button onclick="onClick_m_Axios()">Custom Axios</button>
+</body>
+</html>
