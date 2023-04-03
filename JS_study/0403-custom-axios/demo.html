@@ -24,7 +24,7 @@
         const onClick_m_Axios = async () => {
             console.log("OnClick_m_Axios")
             //Axios 요청하기
-            // 1. .then 으로 받기 
+            // 1. .then 으로 받기 => 프로미시는 실행순서를 예측하기가 힘들다. 
             m_Axios.get("https://koreanjson.com/posts/1").then((res) => {
                 console.log(".then으로 받은 것 : ", res)
             })
