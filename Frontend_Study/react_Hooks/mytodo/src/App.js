@@ -2,25 +2,12 @@ import './App.css';
 import React, {useEffect, useState} from 'react';
 import List from './List.jsx'
 
-
-const App = () => {
-  const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState();
+const useFetch = (callback) => {
   const [loading, setLoading] = useState(false)
   
-  const changeInputData = (e) => {
-    setNewTodo(e.target.value) /* 할일 정보를 입력하 때마다 상태값을 가지고 있는 것이 좋다.  */
-    console.log(newTodo);
-  }  
-  
-  const addTodo = (e) => {
-    e.preventDefault();
-    setTodos([...todos, {id : Math.floor(Math.random() * 1000000), content : newTodo}]) /* totos 에  */
-  }
-
   const fetchingData = () => {
     setLoading(true);
-
+  
     setTimeout(() => {
      const result =  [
        { id: 1, content: '구름이랑 산책'},
@@ -29,20 +16,33 @@ const App = () => {
        { id: 4, content: '펜션예약'},
       ]
       setLoading(false);
-      setTodos(result);
+      callback(result);
     }, 2000);
-    
-      
-      
-      
+  }
   
+  // useEffect 에 콜백함수를 태우면 라이프사이클에 장착된다. 
+    useEffect(() => {
+      fetchingData() 
+    }, [])
 
+    return loading
+  }
+
+const App = () => {
+  const [todos,  setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState();
+  const loading = useFetch(setTodos)
+
+  const changeInputData = (e) => {
+    setNewTodo(e.target.value) /* 할일 정보를 입력하 때마다 상태값을 가지고 있는 것이 좋다.  */
+    console.log("newTodo : ", newTodo);
+  }  
   
-     }
+  const addTodo = (e) => {
+    e.preventDefault();
+    setTodos([...todos, {id : Math.floor(Math.random() * 1000000), content : newTodo}]) /* totos 에  */
+  }
 
-  useEffect(() => {
-    fetchingData() 
-  }, [])
 
    useEffect(() => {
     console.log("useEffect() : 새로운 todos가 추가돼었습니다 : ", todos)
