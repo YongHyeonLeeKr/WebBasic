@@ -23,4 +23,4 @@ const createdAt =  '2020-01-02'
 
 // 키와 벨류가 같으면 벨류를 생략이 가능하다점(Shorthand Property)을 
 
-getWelcomeTemplate({name , age, school,  createdAt})ㄴ
+getWelcomeTemplate({name , age, school})
