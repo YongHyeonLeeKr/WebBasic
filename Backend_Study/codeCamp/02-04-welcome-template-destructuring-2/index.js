@@ -16,12 +16,11 @@ function getWelcomeTemplate({name, age, school, createdAt}) {
 }
 
 
-const myuser = { 
-    name: '영희',
-    age: 124,
-    school: '토끼초등학교',
-    createdAt: '2020-01-02'
-}
+const name =  '영희'
+const age = 124
+const school = '토끼초등학교'
+const createdAt =  '2020-01-02'
 
+// 키와 벨류가 같으면 벨류를 생략이 가능하다점(Shorthand Property)을 
 
-getWelcomeTemplate(myuser)
+getWelcomeTemplate({name , age, school,  createdAt})ㄴ
