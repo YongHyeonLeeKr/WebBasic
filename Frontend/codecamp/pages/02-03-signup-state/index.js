@@ -1,44 +1,27 @@
 import { useState } from 'react'
-
-export default function CounterStatePage() {
-
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [emailError, setEmailError] = useState('') 
+import axios from 'axios'
 
 
-    function onChangeEmail(event){
-        console.log(event.target)
-        console.log(event.target.value)
-        setEmail(event.target.value)
-      }
+export default function RestGetPage() {
 
-      function onChangePassword(event){
-        console.log(event.target)
-        console.log(event.target.value)
-        setPassword(event.target.value)
-      }
+  const [title, setTitle] = useState("")
+
+
+  function onClickAsync() {
+    const result = axios.get("https://koreanjson.com/posts/1")
+    console.log(result)
+  }
+
+  const  onClickSync = async () => {
+    const result = await axios.get("https://koreanjson.com/posts/1")
+    console.log(result)
+    setTitle(result.data.title)
+  }
+
+  return ( <>
+    <button onClick={onClickAsync}> REST API (비동기) 요청  </button>
+    <button onClick={onClickSync}> REST API (동기) 요청 : {title}  </button>
+  </>)
     
-    function onClickSignUp(){
-   
-       console.log(`이메일 : ${email} , 비밀번호: ${password}`)
-
-       if(email.includes("@") === false ){
-            setEmailError('이메일이 올바르지 않습니다. (@없음)')
-       } else {
-        // send api to Backend 
-        alert("회원가입을 축하합니다. ")
-       }
-     }
- 
-     // html 영역
-     return (
-     <>
-        이메일 : <input type='text' onChange={onChangeEmail}/>
-        <div>{emailError}</div>
-        비밀번호 : <input type='password' onChange={onChangePassword}/>
-        <button onClick={onClickSignUp}>회원가입</button>
-     
-     </>
-     )
 }
+
