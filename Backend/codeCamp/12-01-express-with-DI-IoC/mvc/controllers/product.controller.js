@@ -1,0 +1,32 @@
+
+export class ProductController {
+
+    constructor(moneyService, productService){
+        this.moneyService = moneyService;
+        this.productService = productService;
+    }
+
+
+    buyProduct = (req, res) => {
+        // 1. 가진 돈 검증
+        //const moneyService = new CashService
+        const hasMoney = this.moneyService.checkValue()
+        // 2. 판매 여부 검즘
+        //const productService = new ProductSevice()
+        const isSoldout = this.productService.checkSoldout()
+        // 3. 상품 구매 
+        if(hasMoney && !isSoldout){
+            res.send('상품을 구매합니다 ') 
+        }
+    }
+
+    refundProduct = (req, res) => {
+        //1. 판매여부 검증
+        //const productService = new ProductService()
+        const isSoldout = this.productService.checkSoldout()
+        // 2. 상품 환불 코드
+        if(!isSoldout){
+            res.send('상품을 환불합니다.')
+        }
+    }
+}
