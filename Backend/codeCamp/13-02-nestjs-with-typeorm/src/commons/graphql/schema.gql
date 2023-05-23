@@ -2,6 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Board {
+  number: Int!
+  writer: String!
+  title: String!
+  contents: String!
+}
+
 type Query {
   getHello: String!
+  fetchBoards: [Board!]!
+}
+
+type Mutation {
+  createdBoard(writer: String!, title: String!, contents: String!, createBoardInput: CreateBoardInput!): String!
+}
+
+input CreateBoardInput {
+  wirter: String!
+  title: String!
+  contents: String!
 }
