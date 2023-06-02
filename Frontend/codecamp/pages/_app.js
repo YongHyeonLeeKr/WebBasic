@@ -1,4 +1,4 @@
-import { ApolloCache, InMemoryCache, ApolloProvider, ApolloClient} from '@apollo/client'
+import { InMemoryCache, ApolloProvider, ApolloClient} from '@apollo/client'
 
 export default function App({ Component, pageProps }) {
 
