@@ -1,8 +1,8 @@
-import { ApolloCache, InMemoryCache, ApolloProvider} from '@apollo/client'
+import { ApolloCache, InMemoryCache, ApolloProvider, ApolloClient} from '@apollo/client'
 
 export default function App({ Component, pageProps }) {
 
-  const client = new ApolloCache({
+  const client = new ApolloClient({
     uri: "http://backend-example.codebootcamp.co.kr/graphql" ,
     cache: new InMemoryCache() // 컴퓨터 메모리에 백엔드에서 받아온 데이터 임시 저장
   })
