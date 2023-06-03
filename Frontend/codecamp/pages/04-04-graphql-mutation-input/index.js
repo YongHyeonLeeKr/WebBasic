@@ -22,7 +22,7 @@ export default function GraphqlMutationPage() {
 
         
         const result = await 나의함수({
-            variables : { // variables === $ 
+            variables : { // variables === $ 의 역할을 함 
                 writer: writer,
                 title: title,
                 contents: contents
