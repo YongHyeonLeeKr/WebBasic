@@ -44,7 +44,6 @@ relationship2.logFriends();
 ```
 
 결국 자기만의 this를 갖고 싶다면 일반 Function을 사용하자.
-
 대표적인 경우는 html 태그에 이벤트를 달아주는 경우이다.
 
 ```js
