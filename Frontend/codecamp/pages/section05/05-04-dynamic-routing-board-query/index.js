@@ -6,15 +6,15 @@ export default function StaticRoutingPager() {
     const router = useRouter()
    
     const onClickMove1 = () => {
-        router.push("/section05/05-03-static-routing-board-query-moved/1")
+        router.push("/section05/05-04-dynamic-routing-board-query-moved/1")
     }
 
     const onClickMove2 = () => {
-        router.push("/section05/05-03-static-routing-board-query-moved/2")
+        router.push("/section05/05-04-dynamic-routing-board-query-moved/2")
     }
 
     const onClickMove3 = () => {
-        router.push("/section05/05-03-static-routing-board-query-moved/3")
+        router.push("/section05/05-04-dynamic-routing-board-query-moved/3")
     }
 
 
