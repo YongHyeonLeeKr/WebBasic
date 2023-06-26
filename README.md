@@ -11,3 +11,4 @@
 - [얕은 복사, 깊은 복사 그리고 참조의 차이 ](https://github.com/marintelli/WebBasic/blob/main/JS/230328-ShallowCopy-DeepCopy-Ref/%EA%B9%8A%EC%9D%80%20%EB%B3%B5%EC%82%AC%EC%99%80%20%EC%96%95%EC%9D%80%20%EB%B3%B5%EC%82%AC%20%EA%B7%B8%EB%A6%AC%EA%B3%A0%20%EC%B0%B8%EC%A1%B0.md)
 - [프로미스를 이용하여 나만의 Axios 만들어 보기 ](https://github.com/marintelli/WebBasic/blob/main/JS/230403-custom-axios/review.md)
 - [export와 export default의 차이](https://github.com/marintelli/WebBasic/blob/main/JS/230424-export-exportDefault/export-exportDefault.md)
+- [그리고 동적 바인딩, 정적 바인딩의 이해를 통해 이해하는 This에 관한여](https://github.com/marintelli/WebBasic/blob/main/JS/230604-this/230604-this.md) 
