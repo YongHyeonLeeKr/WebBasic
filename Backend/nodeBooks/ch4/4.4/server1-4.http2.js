@@ -1,7 +1,13 @@
-const https = require('https');
+const http2 = require('http2');
 const fs = require('fs');
 
-https.createServer({
+
+/**
+ * SSL 암호와에 더불어 최실 HTTP 프로토콜인 http/2를 사용하는 모듈
+ * 요청 및 응답 방식이 기존 http/1.1보다 개선됨
+ * 웹 속도 개선
+ */
+http2.createSecureServer({
   cert: fs.readFileSync('도메인 인증서 경로'),
   key: fs.readFileSync('도메인 비밀키 경로'),
   ca: [
