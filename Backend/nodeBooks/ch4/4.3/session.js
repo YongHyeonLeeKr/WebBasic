@@ -12,6 +12,11 @@ const parseCookies = (cookie = '') =>
       return acc;
     }, {});
 
+    /**
+     *  중요한 정보는 서버에서 관리하고 클라이언트는 세션키- 만 제공 
+     * 서버에 세션 객체(session) 생성 후 uniqueInt 키를 만들어 속성명으로 사용
+     *  속성 값에 정보를 저장하고 uniqueInt를 클라이언트에 보냄
+     */
 const session = {};
 
 http.createServer(async (req, res) => {
