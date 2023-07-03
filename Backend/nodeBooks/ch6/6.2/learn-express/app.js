@@ -9,10 +9,13 @@ dotenv.config();
 const app = express();
 app.set('port', process.env.PORT || 3000);
 
-app.use(morgan('dev')); // app.use(moragan('combined')) 는 더 상세한 설명 표시 
+app.use(morgan('dev')); // app.use(moragan('combined')) 는 네트워킹시 서버 로그로 더 상세한 설명 표시 ex) GET / 200 5.909ms
 app.use('/', express.static(path.join(__dirname, 'public')));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+/** req.body.name를 쓸 수 있도록 통신 데이터를 객체롤 잘 만들어줌  */
+app.use(express.json()); // 클라이언트에서 json을 보냈을 때 json parsing
+app.use(express.urlencoded({ extended: false })); // 클라이언트에서 form submit 했을 때 form parsing, extendeds는 true면 qs, false 면 querystring -> true추천
+
+// 쿠키 문자열을 객체로 
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
   resave: false,
@@ -56,6 +59,19 @@ app.post('/upload', upload.single('image'), (req, res) => {
 
 app.get('/', (req, res, next) => {
   console.log('GET / 요청에서만 실행됩니다.');
+
+  req.cookies // { mucookie: 'test'}
+  res.cookie('name', encodeURIComponent(name), {
+    express: new Date(),
+    httpOnly: true,
+    path: '/'
+  })
+
+  res.clearCookie('name', encodeURIComponent(name),{
+    httpOnly: true,
+    path: '/',
+  })
+
   next();
 }, (req, res) => {
   throw new Error('에러는 에러 처리 미들웨어로 갑니다.')
