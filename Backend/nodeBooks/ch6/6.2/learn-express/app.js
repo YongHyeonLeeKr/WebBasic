@@ -1,5 +1,5 @@
 const express = require('express');
-const morgan = require('morgan');
+const morgan = require('morgan'); // 클라이언트 서버 통신하면 정보를 알려줌 
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const dotenv = require('dotenv');
@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 app.set('port', process.env.PORT || 3000);
 
-app.use(morgan('dev'));
+app.use(morgan('dev')); // app.use(moragan('combined')) 는 더 상세한 설명 표시 
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
