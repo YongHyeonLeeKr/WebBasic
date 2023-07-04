@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan'); // 클라이언트 서버 통신하면 정보를 알려줌 
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
+const session = require('express-session'); // 요청마다 개인의 저장 공간을 만들어 줌 
 const dotenv = require('dotenv');
 const path = require('path');
 
@@ -10,22 +10,24 @@ const app = express();
 app.set('port', process.env.PORT || 3000);
 
 app.use(morgan('dev')); // app.use(moragan('combined')) 는 네트워킹시 서버 로그로 더 상세한 설명 표시 ex) GET / 200 5.909ms
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public'))); // '/' 로 들어오는 요청을 특정 디렉토리('public')로 라우팅 
 /** req.body.name를 쓸 수 있도록 통신 데이터를 객체롤 잘 만들어줌  */
 app.use(express.json()); // 클라이언트에서 json을 보냈을 때 json parsing
 app.use(express.urlencoded({ extended: false })); // 클라이언트에서 form submit 했을 때 form parsing, extendeds는 true면 qs, false 면 querystring -> true추천
 
-// 쿠키 문자열을 객체로 
-app.use(cookieParser(process.env.COOKIE_SECRET));
+
+app.use(cookieParser(process.env.COOKIE_SECRET));// 쿠키 문자열을 객체로 cookie parsing  
+
+
 app.use(session({
   resave: false,
   saveUninitialized: false,
-  secret: process.env.COOKIE_SECRET,
+  secret: process.env.COOKIE_SECRET, // 쿠키 파서의 쿠키와 세션의 씨크릿 동일하게
   cookie: {
     httpOnly: true,
     secure: false,
   },
-  name: 'session-cookie',
+  name: 'session-cookie', // default는 "connect.sid"
 }));
 
 const multer = require('multer');
