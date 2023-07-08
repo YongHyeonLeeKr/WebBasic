@@ -3,7 +3,7 @@ const env = process.env.NODE_ENV || 'development'; // NODE_ENV 따로 설정 안
 const config = require('../config/config')[env]; // 기본 설정 파일은 'development' 객체
 const User = require('./user');
 const Post = require('./post');
-const HasgTag = require('./hasgTag');
+const Hashtag = require('./hasgtag');
 
 const db = {};
 const sequelize = new Sequelize(
@@ -17,10 +17,10 @@ db.Hashtag = HasgTag;
 
 User.init(sequelize);
 Post.init(sequelize)
-HasgTag.init(sequelize);
+Hashtag.init(sequelize);
 
 User.associate(db);
 Post.associate(db)
-HasgTag.associate(db)
+Hashtag.associate(db)
 
 module.exports = db;
