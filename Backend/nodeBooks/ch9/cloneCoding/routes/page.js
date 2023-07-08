@@ -6,6 +6,29 @@ router.use((req,res,next)=> {
     res.locals.user = null;
     res.locals.followerCount = 0;
     res.locals.followingCount = 0;
-    res.locals.follwerIDList = 0;
+    res.locals.follwerIdList = [];
 
 })
+
+router.get('/profile', (req,res) => {
+    res.rendder('profile', {title : ' 내 정보 - Nodebird '});
+})
+
+router.get('/join', (req, res) => {
+    res.render('join', { 
+        title: '회원가입 - Nodebird'
+    })
+})
+
+router.get('/', (req,res,next) => {
+    const twits = []; // 메인 게시물 
+    res.render('main', {
+        title: 'NodeBird',
+        twits,
+    })
+})
+
+app.use('/', pageRouter)
+
+module.exports = router;
+
