@@ -28,7 +28,6 @@ router.get('/', (req,res,next) => {
     })
 })
 
-app.use('/', pageRouter)
 
 module.exports = router;
 
