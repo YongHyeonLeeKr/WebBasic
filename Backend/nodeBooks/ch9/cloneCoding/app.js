@@ -8,6 +8,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 const pageRouter = require('./routes/page');
+const authRouter = require('./routes/auth')
 const { sequelize } = require('./models')
 
 const app = express();
@@ -46,6 +47,7 @@ app.use(session({
 
 // 페이지 라우터 연결
 app.use('/', pageRouter);
+app.use('/auth', authRouter); // post : /auth/..
 // 모든 라우터 뒤에 나오는 404 처리 미들웨어 
 app.use((req, res, next) => {
   const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
