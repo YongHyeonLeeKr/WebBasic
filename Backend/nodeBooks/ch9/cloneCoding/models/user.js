@@ -37,9 +37,9 @@ module.exports = class User extends Sequelize.Model {
         });
     }
     static associate(db){
-    db.User.hasMany(db.Post);
+    db.User.hasMany(db.Post); // 유저는 여러개의 게시물 가질 수 있음
     db.User.belongsToMany(db.User, {
-    foreignKey: 'followingId',
+        foreignKey: 'followingId', // fk 가 팔로잉 id 이면 
         as: 'Followers',
         through: 'Follow',
         });
