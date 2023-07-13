@@ -1,12 +1,12 @@
 const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
-const { isLoggedIn, isNotLoggedIn } = require('./middlewares')
 const User = require('../models/user')
+const { isLoggedIn, isNotLoggedIn } = require('./middlewares')
 
 const router = express.Router()
 
-router.post('/join', async (req,res,next)=> {
+router.post('/join', isNotLoggedIn , async (req,res,next)=> {
     const { email, nick, password } = req.body;
     try {
         const exUser = await User.findOne({where: { email }})
@@ -28,7 +28,7 @@ router.post('/join', async (req,res,next)=> {
 })
 
 // 로그인 로직은 더 복작해서 passport 를 씀
-router.post('/login', (req,res,next)=> {
+router.post('/login', isLoggedIn , (req,res,next)=> {
     passport.authenticate('local', (authError, user, info) => {
         if(authError){
             console.log(authError)

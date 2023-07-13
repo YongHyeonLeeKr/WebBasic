@@ -5,6 +5,7 @@ const path = require('path');
 const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
+const passport = require('passport')
 
 dotenv.config();
 const pageRouter = require('./routes/page');
@@ -44,6 +45,10 @@ app.use(session({
     secure: false,
   },
 }));
+/** 라우터 가기 전에 미들웨어로 passport 적용 */
+app.use(passport.initialize())
+app.use(passport.session()) //   passport.deserializeUser 실행
+
 
 // 페이지 라우터 연결
 app.use('/', pageRouter);
