@@ -28,7 +28,7 @@ router.post('/join', isNotLoggedIn , async (req,res,next)=> {
 })
 
 // 로그인 로직은 더 복작해서 passport 를 씀
-router.post('/login', isLoggedIn , (req,res,next)=> {
+router.post('/login', isNotLoggedIn , (req,res,next)=> {
     passport.authenticate('local', (authError, user, info) => {
         if(authError){
             console.log(authError)
@@ -44,7 +44,7 @@ router.post('/login', isLoggedIn , (req,res,next)=> {
                 return next(loginError)
             }
             // 세션 쿠키를 브라우저로 전송 
-            return rex.redirect('/') // 로그인 성공 
+            return res.redirect('/') // 로그인 성공 
         })
     })(req,res,next); 
 })
@@ -54,3 +54,15 @@ router.get('/logout', isLoggedIn, (req, res) => {
     req.session.destroy(); // 세션 자체를 파괴
     res.redirect('/');
 })
+
+router.get('/kakao', passport.authenticate('kakao'))
+
+
+//카카오 어쓰에서 로그인 성공시 여기로 
+router.get('/kakao/callback', passport.authenticate('kakao', {
+    failureRedirect:'/',
+}), (req,res) =>{
+    res.redirect('/')
+})
+
+module.exports = router;
