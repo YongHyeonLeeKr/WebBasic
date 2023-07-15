@@ -12,9 +12,11 @@ module.exports = () => {
     })
     /// { id: 3, 'connect.sid': s%12412352356125}
     
+
+    /** passport.session() 에서 브라우저에서 보내주는 cookie 알아낸 다음 deserializerUser실행   */
     passport.deserializeUser((id, done)=> {
         User.findOne({where: {id}})
-            .then(user => done(null,user))
+            .then(user => done(null,user)) // req.user 라는 속성으로 접근할 수 있게 됌 
             .catch(err => done(err))
     })
 
