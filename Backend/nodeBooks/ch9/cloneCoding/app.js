@@ -8,8 +8,10 @@ const dotenv = require('dotenv');
 const passport = require('passport')
 
 dotenv.config();
+
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth')
+const postRouter = require('./routes/post')
 const { sequelize } = require('./models')
 const passportConfig = require('./passport')
 
@@ -34,6 +36,8 @@ sequelize.sync({force: false}) // 씨퀄라이즈 모델 수정하면 DB수정�
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+// 요청 주소로는 img가 들어오지만 실제로는 uploads이하의 이미지 파일을 가져감
+app.use('/img',express.static(path.join(__dirname, 'uploads')));  
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -53,6 +57,7 @@ app.use(passport.session()) //   passport.deserializeUser 실행
 
 // 페이지 라우터 연결
 app.use('/', pageRouter);
+app.use('/post', postRouter)
 app.use('/auth', authRouter); // post : /auth/..
 // 모든 라우터 뒤에 나오는 404 처리 미들웨어 
 app.use((req, res, next) => {
