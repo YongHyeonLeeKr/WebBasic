@@ -1,13 +1,13 @@
 const express = require('express')
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const router = express.Router()
-
+const { Post, User } = require('../models')
 
 router.use((req,res,next)=> {
-    res.locals.user = null;
-    res.locals.followerCount = 0;
-    res.locals.followingCount = 0;
-    res.locals.follwerIdList = [];
+    res.locals.user = req.user
+    res.locals.followerCount = 0
+    res.locals.followingCount = 0
+    res.locals.followerIdList = []
     next()
 })
 
@@ -21,13 +21,28 @@ router.get('/join', isNotLoggedIn, (req, res) => {
     })
 })
 
-router.get('/', (req,res,next) => {
-    const twits = []; // 메인 게시물 
-    res.render('main', {
-        title: 'NodeBird',
-        twits,
-        user: req.user,
-    })
+router.get('/', async (req,res,next) => {
+    try {
+        const posts = await Post.findAll({
+            include: {
+                model: User,
+                attributes: ['id', 'nick'],
+            },
+            order: [['createdAt', 'DESC']],
+        }
+
+        )
+
+        res.render('main', {
+            title: 'NodeBird',
+            twits: posts,
+        })
+    } catch (error) {
+        
+    }
+
+
+
 })
 
 
