@@ -1,7 +1,7 @@
 const express = require('express')
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const router = express.Router()
-const { Post, User } = require('../models')
+const { Post, User, Hashtag } = require('../models')
 
 router.use((req,res,next)=> {
     res.locals.user = req.user
@@ -40,9 +40,28 @@ router.get('/', async (req,res,next) => {
     } catch (error) {
         
     }
+})
 
-
-
+router.get('/hashtag', async (req, res, next) => {
+    const query = decodeURIComponent(req.query.hashtag)
+    if(!query){
+        // 없으면 /
+        return res.redirect('/')
+    }
+    try {
+        const hashtag = await Hashtag.findOne({ where: { title: query }})
+        let posts = []
+        if(hashtag) {
+            posts = await hashtag.getPosts({ include: [{ model: User }]})
+        }
+        return res.render('main', {
+            title: `${query} | NodeBird `,
+            twits: posts,
+        })
+    } catch (error) {
+        console.error(error);
+        return next(error);
+    }
 })
 
 
