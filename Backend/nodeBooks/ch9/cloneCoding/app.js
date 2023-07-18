@@ -12,6 +12,7 @@ dotenv.config();
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth')
 const postRouter = require('./routes/post')
+const userRouter = require('./routes/user')
 const { sequelize } = require('./models')
 const passportConfig = require('./passport')
 
@@ -59,6 +60,7 @@ app.use(passport.session()) //   passport.deserializeUser 실행
 app.use('/', pageRouter);
 app.use('/post', postRouter)
 app.use('/auth', authRouter); // post : /auth/..
+app.use('/user', userRouter)
 // 모든 라우터 뒤에 나오는 404 처리 미들웨어 
 app.use((req, res, next) => {
   const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
