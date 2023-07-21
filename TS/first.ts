@@ -20,3 +20,4 @@ const arr2: number[] = [123,1123124124]
 const obj: { lat: number, lon: number} = {lat: 37.5, lon: 127.5}
 /** 길이가 고정된 배열 -> 튜플  */
 const arr3: [number, number, string] = [123,123,"asd"]
+
