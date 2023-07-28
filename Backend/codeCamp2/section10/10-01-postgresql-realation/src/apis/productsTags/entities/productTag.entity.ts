@@ -1,14 +1,13 @@
-
-
-import { Product } from 'src/apis/products/entities/product.entitiy';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Product } from 'src/apis/products/entities/product.entity';
+import { Tag } from 'src/apis/tags/entities/tag.entity';
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class ProductTag {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: string;
-  @Column()
-  name: string;
-  @ManyToMany(() => Product, (products) => products.productTags)
-  products: Product[];
+  @ManyToOne(() => Product, (product) => product.productTags)
+  product: Product;
+  @ManyToOne(() => Tag, (tag) => tag.productTags)
+  tag: Tag;
 }
