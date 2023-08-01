@@ -37,8 +37,8 @@ export class ProductsResolver {
     @Args('productId') productId: string,
     // `@Args`를 사용해 updateProductInput 를 받아서 수정하고 싶은 값 들을 수정 해 줄것입니다.
     // 따라서 updateProductInput은 수정 대상이 됩니다
-    @Args('updateProductInput') updateProductInput : UpdateProductInput
-  ){
-
+    @Args('updateProductInput') updateProductInput: UpdateProductInput,
+  ): Promise<Product> {
+    return this.productsService.update({ productId, updateProductInput });
   }
 }

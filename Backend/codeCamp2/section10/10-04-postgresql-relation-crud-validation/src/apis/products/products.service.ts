@@ -1,10 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Product } from './entities/product.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
+  IProductServiceCheckSoldOut,
   IProductServiceFindOne,
   IProductsServiceCreate,
+  IProductsServiceUpdate,
 } from './interfaces/products-service.interface';
 import { UpdateProductInput } from './dto/update-product.input';
 
@@ -41,9 +48,10 @@ export class ProductsService {
     productId,
     updateProductInput,
   }: IProductsServiceUpdate): Promise<Product> {
-    const product = await this.productsRepository.findOne({
-      where: { id: productId },
-    });
+    // 검증 관련된 코드는 서비스에서 진행할 것
+    const product = await this.findOne({ productId });
+    // 검증은 서비스에서 진행
+    this.checkSoldout({ product });
 
     const result = this.productsRepository.save({
       ...product, // 수정 후 수정되지 않은 결과 값까지 모두 객체로 리턴
@@ -52,9 +60,11 @@ export class ProductsService {
 
     return result;
   }
-}
 
-interface IProductsServiceUpdate {
-  productId: string;
-  updateProductInput: UpdateProductInput;
+  // checkSoldout를 재사용 하기위해 함수로 따로 만듬
+  checkSoldout({ product }: IProductServiceCheckSoldOut) {
+    if (product.isSoldout) {
+      throw new UnprocessableEntityException('이미 판매 완료된 상품입니다.');
+    }
+  }
 }
