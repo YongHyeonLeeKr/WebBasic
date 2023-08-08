@@ -1,5 +1,4 @@
 import { Product } from 'src/apis/products/entities/product.entity';
-import { Tag } from 'src/apis/tags/entities/tag.entity';
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
