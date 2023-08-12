@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
-import { IUsersServiceCreate } from './interfaces/users-service.interface';
+import { IUsersServiceCreate, IUsersServiceFindOneByEmail } from './interfaces/users-service.interface';
 
 @Injectable()
 export class UsersService {
@@ -11,7 +11,15 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  create({ email, password, name, age }: IUsersServiceCreate): Promise<User> {
+  findOneByEmail({ email }: IUsersServiceFindOneByEmail): Promise<User> {
+    return this.usersRepository.findOne({ where: { email } });
+  }
+
+  async create({ email, password, name, age }: IUsersServiceCreate): Promise<User> {
+    // 중복가입확인
+    const user = await this.findOneByEmail({ email });
+    if (user) throw new ConflictException('이미 등록된 이메일 입니다. ');
+
     return this.usersRepository.save({
       email,
       password,
@@ -20,3 +28,4 @@ export class UsersService {
     });
   }
 }
+

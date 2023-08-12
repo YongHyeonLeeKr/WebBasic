@@ -12,10 +12,9 @@ export class User {
   @Field(() => String)
   email: string;
 
-  // 비밀번호는 브라우저로 전달하지 않음
-  // @Column()
-  // @Field(() => String)
-  // password: string;
+  @Column()
+  // @Field(() => String)  // 비밀번호는 브라우저로 전달하지 않음
+  password: string;
 
   @Column()
   @Field(() => String)
