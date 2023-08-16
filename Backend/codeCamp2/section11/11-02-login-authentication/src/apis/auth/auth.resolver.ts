@@ -10,9 +10,9 @@ export class AuthResolver {
   @Mutation(() => String)
   login(
     @Args('email') email: string,
-    @Args('password') password:string,
-  ) {
-    this.authService.login({ email, password });
+    @Args('password') password: string,
+  ): Promise<string> {
+    return this.authService.login({ email, password });
   }
   //
 }
