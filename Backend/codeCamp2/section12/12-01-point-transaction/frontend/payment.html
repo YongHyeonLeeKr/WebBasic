@@ -18,7 +18,7 @@
                     pg: "kakaopay",
                     pay_method: "card",
                     //merchant_uid: "57008833-33004",
-                    name: "당근 10kg",
+                    name: "테스트결제",
                     amount: 99,
                     buyer_email: "Iamport@chai.finance",
                     buyer_name: "포트원 기술지원팀",
@@ -29,9 +29,9 @@
                 function (rsp) {
                     // callback
                     console.log(rsp)
-
-                    if(rsp.success){
                    
+                    if(rsp.success){
+                        console.log(`impUid:"${rsp.imp_uid}", amount: ${rsp.paid_amount}`)
                         axios.post(
                             'http://localhost:3000/graphql',
                             {
@@ -48,7 +48,7 @@
                             },
                             {
                                 headers: {
-                                    Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NWEyZWFiMC1iNGI1LTQ4Y2MtOWUwMC0xYWI4OTNmYjE3MWQiLCJpYXQiOjE2OTM0MzkwNjUsImV4cCI6MTY5MzQ0NjI2NX0.E3vJNu4aaZXsqL5HszXgjIvh2CEZtWG3v20fUVPS0ik"
+                                      Authorization : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NWEyZWFiMC1iNGI1LTQ4Y2MtOWUwMC0xYWI4OTNmYjE3MWQiLCJpYXQiOjE2OTM1MjM2NTcsImV4cCI6MTY5MzUzMDg1N30.3F1byUJ5zHbGkXln8KfZ61AH0_r_DDz2NwQ2yxhdl0A"
                                 }
                             }
                         )

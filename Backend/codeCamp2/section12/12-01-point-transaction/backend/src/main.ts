@@ -8,6 +8,7 @@ async function bootstrap() {
   /** 데이터가 오고가는 흐름에 있어서 데이터 검증과 필터링을 해주는 역할 */
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter());
+  app.enableCors();
   await app.listen(3000);
 }
 bootstrap();
