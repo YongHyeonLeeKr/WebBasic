@@ -43,7 +43,7 @@ export class AuthService {
   getAccessToken({ user }: IAuthServiceGetAccessToken): string {
     return this.jwtService.sign(
       { sub: user.id },
-      { secret: '나의 비밀번호', expiresIn: '30s' },
+      { secret: '나의 비밀번호', expiresIn: '2h' },
     );
   }
 
