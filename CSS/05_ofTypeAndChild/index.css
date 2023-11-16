@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
+ .container h1:first-child {
+     background-color: blue;
+ }
+
+.container p:first-of-type {
+    background-color: rebeccapurple;
+}
+
+.container p:last-of-type {
+    background-color: yellowgreen;
+}
+
+.container span:first-of-type {
+    background-color: #61dafb;
+}

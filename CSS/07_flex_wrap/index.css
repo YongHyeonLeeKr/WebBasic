@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+.container{
+    width: 600px;
+    height: 500px;
+    padding: 10px;
+    background-color: white;
+    border: 2px solid red;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.container div {
+    background-color: #61dafb;
+    margin: 5px;
+    width: 200px;
+}
+
+.box3 {
+    order: 1;
+}
+
+.box7 {
+    order: 2;
+}
