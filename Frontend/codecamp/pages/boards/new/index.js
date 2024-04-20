@@ -10,8 +10,20 @@ import {
     WriterWrapper,
     Zipcode, ZipcodeWrapper, Error
 } from "../../../styles/boardsNew";
+import {useState} from 'react';
+import { gql, useMutation } from '@apollo/client';
 
-import {useState} from 'react'
+const CREATE_BOARD = gql`
+    mutation createBoard($writer: String, $title: String, $contents: String){
+        createBoard(writer: $writer, title: $title, contents: $contents){
+            _id 
+            number 
+            message
+        }
+    }
+`
+
+
 
 export default function BoardNewPage() {
 
@@ -19,10 +31,14 @@ export default function BoardNewPage() {
     const [password, setPassword] = useState("");
     const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
-    const [writerError,setWriterError] = useState("경고메세지 입니다.");
-    const [passwordError,setPasswordError] = useState("경고메세지 입니다.");
-    const [titleError, setTitleError] = useState("경고메세지 입니다.")
-    const [contentsError, setContentsError] = useState("경고메세지 입니다.")
+    const [writerError,setWriterError] = useState("");
+    const [passwordError,setPasswordError] = useState("");
+    const [titleError, setTitleError] = useState("")
+    const [contentsError, setContentsError] = useState("")
+
+
+    const [createBoard] = useMutation(CREATE_BOARD);
+
     const onChangeWriter = (event) => {
         setWriter(event.target.value);
         if(event.target.value !==""){
@@ -51,7 +67,7 @@ export default function BoardNewPage() {
         }
     }
 
-    const onClickSubmit = () => {
+    const onClickSubmit = async () => {
         if(!writer) {
             setWriterError("작성자를 입력해주세요.");
         }
@@ -62,11 +78,19 @@ export default function BoardNewPage() {
             setTitleError("제목을 입력해주세요.");
         }
         if(!contents){
-            setContentError("내용을 입력해주세요.");
+            setContentsError("내용을 입력해주세요.");
         }
 
         if(writer && password && title && contents){
-            alert('게시글이 등록 되었습니다.')
+            const result = await createBoard({
+                variables : {
+                        writer: writer,
+                        //password: password,
+                        title: title,
+                        contents: contents
+                }
+            })
+            console.log(result);
         }
     }
 

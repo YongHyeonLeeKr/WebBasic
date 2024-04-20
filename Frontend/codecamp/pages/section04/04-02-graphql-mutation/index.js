@@ -10,14 +10,3 @@ const CREATE_BOARD =gql`
         }
     }
 `
-
-export default function GraphqlMutationPage() {
-    const [나의함수] = useMutation(CREATE_BOARD)
-
-    const onClickSubmit = async () => {
-        const result = await 나의함수()
-        console.log(result)
-    }
-
-    return <button onClick={onClickSubmit}> GraphQL 요청하기 </button>
-}
