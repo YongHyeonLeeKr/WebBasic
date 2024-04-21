@@ -10,32 +10,34 @@ import {
     WriterWrapper,
     Zipcode, ZipcodeWrapper, Error
 } from "../../../styles/boardsNew";
+
 import {useState} from 'react';
 import { gql, useMutation } from '@apollo/client';
+import { useRouter } from "next/router";
 
 const CREATE_BOARD = gql`
-    mutation createBoard($writer: String, $title: String, $contents: String){
-        createBoard(writer: $writer, title: $title, contents: $contents){
-            _id 
-            number 
-            message
-        }
+  mutation createBoard($createBoardInput: CreateBoardInput!){
+    createBoard(createBoardInput: $createBoardInput){
+      _id
     }
+  }
 `
 
 
 
 export default function BoardNewPage() {
 
+    const router = useRouter();
+
     const [writer, setWriter] = useState("");
     const [password, setPassword] = useState("");
     const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
+
     const [writerError,setWriterError] = useState("");
     const [passwordError,setPasswordError] = useState("");
     const [titleError, setTitleError] = useState("")
     const [contentsError, setContentsError] = useState("")
-
 
     const [createBoard] = useMutation(CREATE_BOARD);
 
@@ -82,15 +84,24 @@ export default function BoardNewPage() {
         }
 
         if(writer && password && title && contents){
-            const result = await createBoard({
-                variables : {
-                        writer: writer,
-                        //password: password,
-                        title: title,
-                        contents: contents
-                }
-            })
-            console.log(result);
+
+            try {
+                const result = await createBoard({
+                    variables : {
+                        createBoardInput: {
+                            writer,
+                            password,
+                            title,
+                            contents,
+                        }
+                    }
+                })
+                console.log(result.data.createBoard._id);
+                router.push(`/boards/${result.data.createBoard._id}`)
+            } catch (e) {
+                alert(e.message)
+            }
+
         }
     }
 
@@ -144,7 +155,6 @@ export default function BoardNewPage() {
             <ButtonWrapper>
                 <SubmitButton onClick={onClickSubmit}>등록하기</SubmitButton>
             </ButtonWrapper>
-
 
         </Wrapper>
     )
