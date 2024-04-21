@@ -36,5 +36,5 @@ export default function GraphqlMutationPage() {
         }
     }
 
-    return <button onClick={onClickSubmit}> GraphQL 요청하기 </button>
+    return <button onClick={onClickSubmit}> GraphQL 요청하여 게시글 만들기 </button>
 }
