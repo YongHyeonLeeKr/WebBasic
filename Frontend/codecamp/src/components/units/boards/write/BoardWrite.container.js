@@ -1,18 +1,16 @@
 import { useMutation } from '@apollo/client'
 import { useState } from 'react'
 import BoardWriteUI from './BoardWrite.presenter'
-import {CREATE_BOARD } from './BoardWrite.queries'
+import {CREATE_BOARD} from './BoardWrite.queries'
 
 export default function BoardWrite(){
     // only logic
-    const [나의함수] = useMutation(CREATE_BOARD)
+    const [나의함수] = useMutation(CREATE_BOARD);
     const [writer, setWriter] = useState()
     const [title, setTitle] = useState()
     const [contents, setContents] = useState()
 
     const onClickSubmit = async () => {
-
-        
         const result = await 나의함수({
             variables : { // variables === $ 의 역할을 함 
                 writer: writer,
