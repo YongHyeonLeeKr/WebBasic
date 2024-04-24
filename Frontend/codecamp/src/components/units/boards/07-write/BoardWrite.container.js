@@ -4,7 +4,7 @@ import BoardWriteUI from './BoardWrite.presenter'
 import {CREATE_BOARD } from './BoardWrite.queries'
 
 export default function BoardWrite(){
-
+    // isActive 상태
     const [isActive, setIsActive] = useState(false)
     // only logic
     const [나의함수] = useMutation(CREATE_BOARD)
