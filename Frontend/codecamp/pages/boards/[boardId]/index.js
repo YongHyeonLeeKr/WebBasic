@@ -1,4 +1,4 @@
-import BoardDetail from "../../../src/components/units/boards/detail/boardDetail.container";
+import BoardDetail from "../../../src/components/units/board/detail/boardDetail.container";
 
 
 export default function BoardDetailPage() {
