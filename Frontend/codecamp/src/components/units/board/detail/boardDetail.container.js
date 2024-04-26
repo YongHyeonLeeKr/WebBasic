@@ -11,5 +11,11 @@ export default function BoardDetail() {
     })
     console.log( data);
 
-    return <BoardDetailUI data={data} />
+    const onClickMoveToBoardList = () => {
+        router.push("/boards")
+    }
+
+    return <BoardDetailUI data={data}
+        onClickMoveToBoardList = {onClickMoveToBoardList}
+    />
 }
