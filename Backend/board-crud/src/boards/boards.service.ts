@@ -1,16 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Board } from './entities/board.entity';
+import { Board } from './models/board.model';
 
 @Injectable()
 export class BoardsService {
-  private boards = [];
+  private boards: Board[] = [];
   // constructor(
   //   @InjectRepository(Board)
   //   private boardsRepository: Repository<Board>,
   // ) {}
-
 
   getAllboards() {
     return this.boards;

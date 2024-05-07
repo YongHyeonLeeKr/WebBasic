@@ -8,14 +8,14 @@ import {
   Put,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
-import { Board } from './entities/board.entity';
+import { Board } from './models/board.model';
 
 @Controller('boards')
 export class BoardsController {
   constructor(private boardsService: BoardsService) {}
 
   @Get('/')
-  getAllBoards() {
+  getAllBoards(): Board[] {
     return this.boardsService.getAllboards();
   }
 
