@@ -26,6 +26,11 @@ export class BoardsController {
     return this.boardsService.createBoard(title, description);
   }
 
+  @Get('/:id')
+  getBoardById(@Param('id') id: string): Board {
+    return this.boardsService.getBoardById(id);
+  }
+
   // @Get(':id')
   // getBoardById(@Param('id') id: number) {
   //   return this.boardsService.findOne(id);

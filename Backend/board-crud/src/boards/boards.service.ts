@@ -35,6 +35,10 @@ export class BoardsService {
     return board;
   }
 
+  getBoardById(id: string): Board {
+    return this.boards.find((board) => board.id === id);
+  }
+
   // async findAll(): Promise<Board[]> {
   //   return this.boardsRepository.find();
   // }
