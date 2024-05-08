@@ -18,6 +18,13 @@ export class BoardsController {
   getAllBoards(): Board[] {
     return this.boardsService.getAllboards();
   }
+  @Post()
+  createBoard(
+    @Body('title') title: string,
+    @Body('description') description: string,
+  ): Board {
+    return this.boardsService.createBoard(title, description);
+  }
 
   // @Get(':id')
   // getBoardById(@Param('id') id: number) {
