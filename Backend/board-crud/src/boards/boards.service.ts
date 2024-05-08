@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Board, BoardStatus } from './models/board.model';
 import { v1 as uuid } from 'uuid';
+import { CreateBoardDto } from './dto/create-board.dto';
 
 /*
 게시물에 관한 로직을 처리하는 곳 
@@ -19,7 +20,8 @@ export class BoardsService {
     return this.boards;
   }
 
-  createBoard(title: string, description: string) {
+  createBoard(createBoardDto: CreateBoardDto) {
+    const { title, description } = createBoardDto;
     /*
     게시물 ID는 유니크한 값을 넣어주어야 하는데,
     데이터베이스를 사용하지 않으므로 UUID 모듈을 이용해서 유니크한 값을 줌
