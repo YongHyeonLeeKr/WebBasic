@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  NotFoundException,
   Param,
   Patch,
   Post,
@@ -30,12 +31,18 @@ export class BoardsController {
 
   @Get('/:id')
   getBoardById(@Param('id') id: string): Board {
-    return this.boardsService.getBoardById(id);
+    const found = this.boardsService.getBoardById(id);
+    if (!found) {
+      throw new NotFoundException(`${id}로 된 게시물을 찾을 수 없습니다.`);
+    }
+
+    return found;
   }
 
   @Delete('/:id')
   deleteBoard(@Param('id') id: string): void {
-    this.boardsService.deleteBoard(id);
+    const found = this.getBoardById(id); //
+    this.boardsService.deleteBoard(found.id);
   }
 
   // 게시글의 상태를 업데이트
