@@ -7,6 +7,8 @@ import {
   Patch,
   Post,
   Put,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
 import { Board, BoardStatus } from './models/board.model';
@@ -21,6 +23,7 @@ export class BoardsController {
     return this.boardsService.getAllboards();
   }
   @Post()
+  @UsePipes(ValidationPipe) // 핸들러 레벨에서 유효성 체크
   createBoard(@Body() createBoardDto: CreateBoardDto): Board {
     return this.boardsService.createBoard(createBoardDto);
   }
