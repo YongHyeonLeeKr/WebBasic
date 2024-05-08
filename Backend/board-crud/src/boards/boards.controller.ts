@@ -4,11 +4,12 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Put,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
-import { Board } from './models/board.model';
+import { Board, BoardStatus } from './models/board.model';
 
 @Controller('boards')
 export class BoardsController {
@@ -34,6 +35,15 @@ export class BoardsController {
   @Delete('/:id')
   deleteBoard(@Param('id') id: string): void {
     this.boardsService.deleteBoard(id);
+  }
+
+  // 게시글의 상태를 업데이트
+  @Patch('/:id/status')
+  updateBoardStatus(
+    @Param('id') id: string,
+    @Body('status') status: BoardStatus,
+  ) {
+    return this.boardsService.updateBoardStatus(id, status);
   }
 
   // @Get(':id')
