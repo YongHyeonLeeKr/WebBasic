@@ -12,66 +12,22 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
-import { Board, BoardStatus } from './models/board.model';
+
+import { Board } from './entities/board.entity';
 import { CreateBoardDto } from './dto/create-board.dto';
-import {BoardStatusValidationPipe} from "./pipes/board-status-validation.pipe";
 
 @Controller('boards')
 export class BoardsController {
   constructor(private boardsService: BoardsService) {}
 
-  @Get('/')
-  getAllBoards(): Board[] {
-    return this.boardsService.getAllboards();
+  @Get(':id')
+  async getBoardById(@Param('id') id: number): Promise<Board> {
+    return this.boardsService.getBoardById(id);
   }
+
   @Post()
-  @UsePipes(ValidationPipe) // 핸들러 레벨에서 유효성 체크
-  createBoard(@Body() createBoardDto: CreateBoardDto): Board {
+  @UsePipes(ValidationPipe)
+  async createBoard(@Body() createBoardDto: CreateBoardDto): Promise<Board> {
     return this.boardsService.createBoard(createBoardDto);
   }
-
-  @Get('/:id')
-  getBoardById(@Param('id') id: string): Board {
-    const found = this.boardsService.getBoardById(id);
-    if (!found) {
-      throw new NotFoundException(`${id}로 된 게시물을 찾을 수 없습니다.`);
-    }
-
-    return found;
-  }
-
-  @Delete('/:id')
-  deleteBoard(@Param('id') id: string): void {
-    const found = this.getBoardById(id); //
-    this.boardsService.deleteBoard(found.id);
-  }
-
-  // 게시글의 상태를 업데이트
-  @Patch('/:id/status')
-  updateBoardStatus(
-    @Param('id') id: string,
-    @Body('status', BoardStatusValidationPipe) status: BoardStatus,
-  ) {
-    return this.boardsService.updateBoardStatus(id, status);
-  }
-
-  // @Get(':id')
-  // getBoardById(@Param('id') id: number) {
-  //   return this.boardsService.findOne(id);
-  // }
-  //
-  // @Post()
-  // createBoard(@Body() board: Board) {
-  //   return this.boardsService.create(board);
-  // }
-  //
-  // @Put(':id')
-  // updateBoard(@Param('id') id: number, @Body() boardData: Partial<Board>) {
-  //   return this.boardsService.update(id, boardData);
-  // }
-  //
-  // @Delete(':id')
-  // deleteBoard(@Param('id') id: number) {
-  //   return this.boardsService.remove(id);
-  // }
 }
