@@ -23,6 +23,10 @@ import { BoardStatus } from './enums/board-status.enum';
 export class BoardsController {
   constructor(private boardsService: BoardsService) {}
 
+  @Get()
+  getAllBoard(): Promise<Board[]> {
+    return this.boardsService.getAllboards();
+  }
   @Get(':id')
   async getBoardById(@Param('id') id: number): Promise<Board> {
     return this.boardsService.getBoardById(id);
