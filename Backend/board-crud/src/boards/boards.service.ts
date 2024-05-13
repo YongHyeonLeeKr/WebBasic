@@ -35,4 +35,9 @@ export class BoardsService {
     }
     return found;
   }
+
+  async deleteBoard(id: number): Promise<void> {
+    const result = await this.boardRepository.delete(id);
+    console.log(`result : ${result}`);
+  }
 }
