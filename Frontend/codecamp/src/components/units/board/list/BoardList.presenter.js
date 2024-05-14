@@ -12,12 +12,12 @@ export default function BoardListUI(props){
                 <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
                 <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
             </S.Row>
-            {props.data?.fetchBoards.map((el) => (
-                <S.Row key={el._id}>
+            {props.data?.map((el) => (
+                <S.Row key={el.id}>
                     <S.ColumnBasic>
-                        {String(el._id).slice(-4).toUpperCase()}
+                        {String(el.id).slice(-4).toUpperCase()}
                     </S.ColumnBasic>
-                    <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
+                    <S.ColumnTitle id={el.id} onClick={props.onClickMoveToBoardDetail}>
                         {el.title}
                     </S.ColumnTitle>
                     <S.ColumnBasic> {el.writer}</S.ColumnBasic>

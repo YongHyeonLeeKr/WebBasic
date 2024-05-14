@@ -7,10 +7,16 @@ export class Board extends BaseEntity {
   id: number;
 
   @Column()
+  writer: string;
+
+  @Column()
+  password: string;
+
+  @Column()
   title: string;
 
   @Column()
-  description: string;
+  contents: string;
 
   @Column()
   status: BoardStatus;

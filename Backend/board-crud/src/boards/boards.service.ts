@@ -16,10 +16,12 @@ export class BoardsService {
   ) {}
 
   async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
-    const { title, description } = createBoardDto;
+    const { title, writer, password, contents } = createBoardDto;
     const board = this.boardRepository.create({
       title,
-      description,
+      writer,
+      password,
+      contents,
       status: BoardStatus.PUBLIC, // Default status
     });
 
@@ -46,6 +48,13 @@ export class BoardsService {
   async updateBoardStatus(id: number, status: BoardStatus): Promise<Board> {
     const board = await this.getBoardById(id);
     board.status = status;
+    await this.boardRepository.save(board);
+    return board;
+  }
+
+  async updateBoardContents(id: number, contents: string): Promise<Board> {
+    const board = await this.getBoardById(id);
+    board.contents = contents;
     await this.boardRepository.save(board);
     return board;
   }

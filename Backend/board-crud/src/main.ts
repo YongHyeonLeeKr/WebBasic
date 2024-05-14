@@ -1,9 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { BoardsModule } from './boards/boards.module';
-import {AppModule} from "./app.module";
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  // CORS를 전역적으로 활성화
+  app.enableCors();
+  await app.listen(6376);
 }
 bootstrap();
