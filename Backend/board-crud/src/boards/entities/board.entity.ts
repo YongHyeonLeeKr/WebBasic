@@ -1,4 +1,10 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { BoardStatus } from '../enums/board-status.enum';
 
 @Entity()
@@ -20,4 +26,7 @@ export class Board extends BaseEntity {
 
   @Column()
   status: BoardStatus;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }

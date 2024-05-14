@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateBoardDto } from './dto/create-board.dto';
@@ -52,8 +56,25 @@ export class BoardsService {
     return board;
   }
 
-  async updateBoardContents(id: number, contents: string): Promise<Board> {
+  async updateBoardContents(
+    id: number,
+    title: string,
+    contents: string,
+    password: string,
+  ): Promise<Board> {
     const board = await this.getBoardById(id);
+
+    if (!board) {
+      throw new NotFoundException(`Board with ID ${id} not found.`);
+    }
+
+    // 패스워드 검증
+    if (board.password !== password) {
+      throw new UnauthorizedException('Incorrect password.');
+    }
+
+    // 패스워드가 맞을 경우, 내용 업데이트
+    board.title = title;
     board.contents = contents;
     await this.boardRepository.save(board);
     return board;
