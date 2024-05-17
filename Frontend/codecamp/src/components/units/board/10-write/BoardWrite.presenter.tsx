@@ -1,6 +1,10 @@
+import React from 'react'
 import { RedInput, BlueButton } from './BoardWrite.styles'
+import { IBoardWriteUIProps } from './boardWrite.types'
 
-export default function BoardWriteUI(props) {
+
+
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
    // only ui
     return (
         <div>

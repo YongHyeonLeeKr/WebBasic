@@ -1,8 +1,9 @@
 import { useMutation } from '@apollo/client'
-import { useState } from 'react'
+import { useState, ChangeEvent } from 'react'
 import BoardWriteUI from './BoardWrite.presenter'
 import {CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
 import {useRouter} from "next/router";
+import React from 'react';
 
 interface IBoardWriteProps {
     isEdit : boolean
@@ -13,10 +14,10 @@ export default function BoardWrite(props: IBoardWriteProps){
     // only logic
     const [createBoard] = useMutation(CREATE_BOARD);
     const [updateBoard] = useMutation(UPDATE_BOARD);
-    const [writer, setWriter] = useState()
-    const [password, setPassword] = useState();
-    const [title, setTitle] = useState()
-    const [contents, setContents] = useState()
+    const [writer, setWriter] = useState("")
+    const [password, setPassword] = useState("");
+    const [title, setTitle] = useState("")
+    const [contents, setContents] = useState("")
     const router = useRouter();
 
     const onClickSubmit = async () => {
@@ -62,17 +63,17 @@ export default function BoardWrite(props: IBoardWriteProps){
 
     }
 
-    const onChangeWriter = (event) => {
+    const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
         setWriter(event.target.value)
     }
 
-    const onChangePassword = (event) => {
+    const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value)
     }
-    const onChangeTitle = (event) => {
+    const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
         setTitle(event.target.value)
     }
-    const onChangeContents = (event) => {
+    const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
         setContents(event.target.value)
     }
 
@@ -80,9 +81,9 @@ export default function BoardWrite(props: IBoardWriteProps){
     <div>
         <div> 여기는 컨테이너 입니다.</div>        
         <BoardWriteUI 
-            onClickSubmit = {onClickSubmit}
             onClickUpdate = {onClickUpdate}
-            onChangeWriter={onChangeWriter}
+            onClickSubmit = {onClickSubmit}
+            onChangeWriter ={onChangeWriter}
             onChangePassword = {onChangePassword}
             onChangeTitle = {onChangeTitle}
             onChangeContents = {onChangeContents}
