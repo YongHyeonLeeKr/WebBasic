@@ -4,11 +4,9 @@ import BoardWriteUI from './BoardWrite.presenter'
 import {CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
 import {useRouter} from "next/router";
 import React from 'react';
+import { IBoardWriteProps, IMyvariables } from './boardWrite.types';
 
-interface IBoardWriteProps {
-    isEdit : boolean
-    data? : any
-}
+
 
 export default function BoardWrite(props: IBoardWriteProps){
     // only logic
@@ -39,12 +37,7 @@ export default function BoardWrite(props: IBoardWriteProps){
 
     const onClickUpdate = async () => {
         // 변경 내용이 있으면 뮤테이션에 포함해서 날려주고 아니면
-        interface IMyvariables {
-            number: number
-            writer?: string
-            title?: string
-            contents?: string
-        }
+
         const myVariables: IMyvariables = {
             number: Number(router.query.number)
         }

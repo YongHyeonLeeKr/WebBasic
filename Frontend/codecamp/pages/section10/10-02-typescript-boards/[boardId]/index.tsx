@@ -1,6 +1,7 @@
 import {gql, useQuery} from '@apollo/client'
 import { useRouter } from 'next/router'
 import {FETCH_BOARD} from "../../../../src/components/units/board/10-write/BoardWrite.queries";
+import React from 'react';
 
 
 
