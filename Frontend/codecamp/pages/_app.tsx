@@ -2,8 +2,13 @@ import React, { createContext } from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 import axios from 'axios';
 import '../styles/globals.css';
+import { AppProps } from 'next/app';
 
-const client = new ApolloClient({
+
+
+export default function App({ Component, pageProps } : AppProps) {
+
+    const client = new ApolloClient({
     uri: "http://backend-practice.codebootcamp.co.kr/graphql",
     cache: new InMemoryCache()
 });
@@ -14,9 +19,7 @@ const api = axios.create({
 });
 
 // 모든 컴포넌트에서 axios를 쉽게 사용할 수 있도록 Context 제공
-export const AxiosContext = React.createContext(api);
-
-export default function App({ Component, pageProps }) {
+const AxiosContext = React.createContext(api);
     return (
         <div>
             <div> ------------- 여기는 _app.js 컴포넌트 입니다. -----------</div>
