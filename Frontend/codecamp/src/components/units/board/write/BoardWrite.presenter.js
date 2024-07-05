@@ -11,8 +11,8 @@ export default function BoardWriteUI(props){
                         type="text"
                         placeholder="이름을 적어주세요."
                         onChange={props.onChangeWriter}
-                        defaultValue={props.data?.fetchBoard.writer}
-                        readOnly={props.data?.fetchBoard.writer} // 작성자가 있다면 true -> reaonlty 활성화 -> Input field에 작성 불가
+                        defaultValue={props.data?.writer}
+                        readOnly={props.data?.writer} // 작성자가 있다면 true -> reaonlty 활성화 -> Input field에 작성 불가
                     />
                     <S.Error>{props.writerError}</S.Error>
                 </S.InputWrapper>
@@ -32,7 +32,7 @@ export default function BoardWriteUI(props){
                     type="text"
                     placeholder="제목을 작성해주세요."
                     onChange={props.onChangeTitle}
-                    defaultValue={props.data?.fetchBoard.title}
+                    defaultValue={props.data?.title}
                 />
                 <S.Error>{props.titleError}</S.Error>
             </S.InputWrapper>
@@ -41,7 +41,7 @@ export default function BoardWriteUI(props){
                 <S.Contents
                     placeholder="내용을 작성해주세요."
                     onChange={props.onChangeContents}
-                    defaultValue={props.data?.fetchBoard.contents}
+                    defaultValue={props.data?.contents}
                 />
                 <S.Error>{props.contentsError}</S.Error>
             </S.InputWrapper>

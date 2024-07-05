@@ -10,16 +10,16 @@ export default function BoardDetailUI(props) {
                     <S.AvatarWrapper>
                         <S.Avatar src='/images/avatar.png'/>
                         <S.Info>
-                            <S.Writer>{props.data?.fetchBoard?.writer}</S.Writer>
+                            <S.Writer>{props.data?.writer}</S.Writer>
                             <S.CreatedAt>
-                                {props.data?.fetchBoard?.createdAt}
+                                {props.data?.createdAt}
                             </S.CreatedAt>
                         </S.Info>
                     </S.AvatarWrapper>
                 </S.Header>
                 <S.Body>
-                    <S.Title>{props.data?.fetchBoard?.title}</S.Title>
-                    <S.Contents>{props.data?.fetchBoard?.contents}</S.Contents>
+                    <S.Title>{props.data?.title}</S.Title>
+                    <S.Contents>{props.data?.contents}</S.Contents>
                 </S.Body>
             </S.CardWrapper>
             <S.BottomWrapper>

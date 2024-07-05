@@ -50,4 +50,19 @@ export class BoardsController {
   ): Promise<Board> {
     return this.boardsService.updateBoardStatus(id, status);
   }
+
+  @Patch('/:id/edit')
+  updateBoardContents(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('title') title: string,
+    @Body('contents') contents: string,
+    @Body('password') password: string,
+  ): Promise<Board> {
+    return this.boardsService.updateBoardContents(
+      id,
+      title,
+      contents,
+      password,
+    );
+  }
 }

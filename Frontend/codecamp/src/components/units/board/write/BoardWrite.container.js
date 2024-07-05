@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
 import { useState } from 'react'
 import BoardWriteUI from './BoardWrite.presenter'
-import {CREATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
+import {CREATE_BOARD, RESTFUL_CREATE_BOARD, RESTFUL_UPDATE_BOARD, UPDATE_BOARD} from './BoardWrite.queries'
 import {useRouter} from "next/router";
 
 export default function BoardWrite(props){
@@ -90,23 +90,20 @@ export default function BoardWrite(props){
         }
 
         if(writer && password && title && contents){
-
-            try {
-                const result = await createBoard({
-                    variables : {
-                        createBoardInput: {
-                            writer,
-                            password,
-                            title,
-                            contents,
-                        }
-                    }
-                })
-                console.log(result.data.createBoard._id);
-                router.push(`/boards/${result.data.createBoard._id}`)
-            } catch (e) {
-                alert(e.message)
-            }
+                const boardPostData = {
+                    writer,
+                    password,
+                    title,
+                    contents,
+                }
+                try {
+                    const result = await RESTFUL_CREATE_BOARD(boardPostData);
+                    alert('Post submitted successfully!'); // 성공 메시지
+                    console.log(result);
+                    router.push(`/boards/${result.data.id}`)
+                } catch (error) {
+                    alert(error.message); // 실패 메시지
+                }
 
         }
     }
@@ -118,21 +115,20 @@ export default function BoardWrite(props){
         const updateBoardInput = {}
         if(title) updateBoardInput.title = title
         if(contents) updateBoardInput.contents = contents
+        if(password) updateBoardInput.password = password
 
         console.log("onClickUpdate!!")
 
         try {
             // 수정하기 하자
-            const result = await updateBoard({
-                variables: {
-                    updateBoardInput: updateBoardInput,
-                    password,
-                    boardId: router.query.boardId
-                }
-            })
-
-            // 상세보기 페이지로 이동
-            router.push(`/boards/${result.data.updateBoard._id}`)
+            try {
+                const result = await RESTFUL_UPDATE_BOARD(router.query.boardId, updateBoardInput);
+                alert('Post submitted successfully!'); // 성공 메시지
+                console.log(result);
+                router.push(`/boards/${router.query.boardId}`)
+            } catch (error) {
+                alert(error.message); // 실패 메시지
+            }
         } catch (e) {
             alert(e.message)
         }
