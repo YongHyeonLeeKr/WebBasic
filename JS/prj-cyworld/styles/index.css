@@ -105,7 +105,6 @@
 .wrapper__right {
     width: 524px;
     height: 472px;
-    background-color: black;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -145,5 +144,4 @@
 iframe {
     width: 100%;
     height: 100%;
-    background-color: gray;
 }

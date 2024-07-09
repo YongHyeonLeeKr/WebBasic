@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>Game</title>
+    <link rel="stylesheet" href="./styles/game.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper__header">
+            <div class="header__title">
+                <div class="title">Game</div>
+                <div class="subtitle">TODAY CHIOCE</div>
+            </div>
+            <div class="divideLine"></div>
+        </div>
+        <div class="game__container">
+            <img src="./imgs/endWord.png"/>
+            <div class="game__title">끝말잇기</div>
+            <div class="game__subtitle">제시어: <span id="word">코드캠프</span></div>
+            <div class="word__text">
+                <input type="text" placeholder="단어를 입력하세요" id="myword" class="textbox">
+                <button class="search">입력</button>
+            </div>
+            <div id="result" class="word__result">결과!</div>
+        </div>
+        <div class="game__container"></div>
+
+    </div>
+    
+</body>
+</html>
