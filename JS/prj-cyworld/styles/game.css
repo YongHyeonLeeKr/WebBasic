@@ -93,8 +93,34 @@ html, body {
     font-size: 11px;
 }
 
+.game__lotto__number{
+    width: 130px;
+    height: 21px;
+    background-color: #ffe400;
+    border-radius: 8px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.game__lotto__button {
+    width: 62px;
+    height: 24px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 13px;
+    font-weight: 700;
+
+}
+
 .word__result {
     font-size: 11px;
     font-weight: 700;
+    
 }
 
