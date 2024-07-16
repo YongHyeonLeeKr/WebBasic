@@ -3,15 +3,12 @@ import { ApolloProvider, ApolloClient, InMemoryCache, HttpLink } from '@apollo/c
 import axios from 'axios';
 import '../styles/globals.css';
 import { AppProps } from 'next/app';
+import ApolloSetting from '../src/components/commons/apollo';
 
 
 
 export default function App({ Component, pageProps } : AppProps) {
 
-    const client = new ApolloClient({
-    uri: "http://backend-practice.codebootcamp.co.kr/graphql",
-    cache: new InMemoryCache()
-});
 
 // axios 인스턴스 생성
 const api = axios.create({
@@ -23,11 +20,11 @@ const AxiosContext = React.createContext(api);
     return (
         <div>
             <div> ------------- 여기는 _app.js 컴포넌트 입니다. -----------</div>
-            <ApolloProvider client={client}>
+            <ApolloSetting>
                 <AxiosContext.Provider value={api}>
                     <Component {...pageProps} />
                 </AxiosContext.Provider>
-            </ApolloProvider>
+            </ApolloSetting>
             <div> ------------- 여기까지 _app.js 컴포넌트 입니다. -----------</div>
         </div>
     );
