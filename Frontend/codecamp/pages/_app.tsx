@@ -4,6 +4,8 @@ import axios from 'axios';
 import '../styles/globals.css';
 import { AppProps } from 'next/app';
 import ApolloSetting from '../src/components/commons/apollo';
+import { Global } from '@emotion/react';
+import Layout from '../src/commons/layout';
 
 
 
@@ -21,9 +23,15 @@ const AxiosContext = React.createContext(api);
         <div>
             <div> ------------- 여기는 _app.js 컴포넌트 입니다. -----------</div>
             <ApolloSetting>
-                <AxiosContext.Provider value={api}>
-                    <Component {...pageProps} />
-                </AxiosContext.Provider>
+                <>
+                    <Global styles={undefined} / >
+                    <AxiosContext.Provider value={api}>
+                        <Layout>
+                            <Component {...pageProps} />
+                        </Layout>
+                    </AxiosContext.Provider>
+
+                </>
             </ApolloSetting>
             <div> ------------- 여기까지 _app.js 컴포넌트 입니다. -----------</div>
         </div>
