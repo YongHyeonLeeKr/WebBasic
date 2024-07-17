@@ -6,5 +6,5 @@ const Wrapper = styled.div `
 `
 
 export default function LayoutBanner (): JSX.Element {
-    return <Wrapper>배너 입니다.</Wrapper>;
+    return <Wrapper>Banner 입니다.</Wrapper>;
 } 
