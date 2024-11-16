@@ -105,7 +105,6 @@
 .wrapper__right {
     width: 524px;
     height: 472px;
-    background-color: black;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -145,5 +144,29 @@
 iframe {
     width: 100%;
     height: 100%;
-    background-color: gray;
+}
+
+.navigation {
+    width: 62px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    left: 774px;
+    top: 110px;
+}
+
+.navigation__item {
+    width: 60px;
+    height: 30px;
+    color: white;
+    background-color: #298eb5;
+    border: 1px solid black;
+    border-radius: 0px 10px 10px 0px;
+    font-size: 10px;
+    text-align: center;
+    line-height: 30px;
+    
+    cursor: pointer;
 }
